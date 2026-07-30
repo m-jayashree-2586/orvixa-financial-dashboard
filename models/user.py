@@ -1,6 +1,10 @@
 """
-This is the User model - basically a container that holds everything
-we know about one person's finances.
+User Model
+
+Defines the User data model used throughout the Orvixa application.
+
+This class stores personal and financial information entered by the user.
+It does not perform any financial calculations.All business logic is handled separately by the FinancialAnalyzer service.
 """
 
 from dataclasses import dataclass, field
@@ -8,7 +12,12 @@ from typing import Optional
 
 @dataclass
 class User:
-    """One person's profile and financial snapshot."""
+    """
+    Represents a user's personal and financial profile.
+    
+    The User class acts as a data container for information that is 
+    used by other services within the application.
+    """
  
     name: str
     age: int
@@ -20,12 +29,18 @@ class User:
     emergency_fund: float
     investments: float
  
-    # Not everyone will fill this in, so it defaults to nothing.
+    # Optional notes provided by the user.
     notes: Optional[str] = field(default=None)
  
     def to_dict(self) -> dict:
         """
-        Turns the user into a plain dictionary.
+        Convert the User object into a dictionary.
+
+        Returns:
+            dict:Dictionary containing all user attributes.
+
+        This method is useful when exporting data,
+        passing information to the UI, or generating reports.
         """
         return {
             "name": self.name,
@@ -42,6 +57,18 @@ class User:
  
     @classmethod
     def from_dict(cls, data: dict) -> "User":
+        """
+        Create a User object from a dictionary.
+
+        Args:
+            data(dict):Dictionary containing user information.
+
+        Returns:
+            User: A new User instance.
+
+        This method simplifies object creation from
+        form inputs or JSON data.
+        """
         return cls(
             name=data["name"],
             age=data["age"],
@@ -56,5 +83,10 @@ class User:
         )
  
     def __str__(self) -> str:
+        """
+        Return a readable string representation of the User object.
+        
+        Useful for debugging and logging.
+        """
         return f"User({self.name}, age={self.age}, occupation={self.occupation})"
  
