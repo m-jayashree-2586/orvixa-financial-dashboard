@@ -13,42 +13,42 @@ application to provide both improvement suggestions and positive
 reinforcement where appropriate.
 """
 
+
 class RecommendationEngine:
-    class RecommendationEngine:
-        """Generate personalized financial recommendations.
+    """Generate personalized financial recommendations.
 
-        This class analyzes the financial metrics produced by the
-        FinancialAnalyzer and generates actionable recommendations
-        to help users improve their financial well-being.
-        """
+    This class analyzes the financial metrics produced by the
+    FinancialAnalyzer and generates actionable recommendations
+    to help users improve their financial well-being.
+    """
 
-    def __init__(self,analysis:dict):
-        def __init__(self, analysis: dict):
-            """Initialize the recommendation engine.
+    def __init__(self, analysis: dict):
+        """Initialize the recommendation engine.
 
-            Args:
-                analysis (dict): Dictionary containing the calculated
+        Args:
+            analysis (dict): Dictionary containing the calculated
                 financial metrics produced by the FinancialAnalyzer.
-            """
+        """
         self.analysis = analysis
 
-    def _savings_recommendation(self)->str:
+        
+    def _savings_recommendation(self) -> str:
         """Generate a recommendation based on the user's savings rate.
 
         Returns:
             str: Recommendation for improving or maintaining
             monthly savings habits.
         """
-        rate=self.analysis.get("savings_rate",0)
-        if rate<10:
+        rate = self.analysis.get("savings_rate", 0)
+        if rate < 10:
             return "Your savings rate is quite low - try to save at least 10-20% of your income each month."
-        elif rate<20:
+        elif rate < 20:
             return "You're saving, but there's room to grow - aim to push your savings rate closer to 20%."
         else:
-            return "Great job - your savings rate is healthy.Keep this habit consistent."
+            return "Great job - your savings rate is healthy. Keep this habit consistent."
 
 
-    def _debt_recommendation(self)->str:
+    def _debt_recommendation(self) -> str:
         """Generate a recommendation based on the user's debt ratio.
 
         Returns:
